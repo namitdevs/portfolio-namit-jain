@@ -25,7 +25,7 @@ const experiences = [
     ],
     skills: ['Marketing', 'Outreach', 'Communication', 'Cybersecurity'],
   },
-  
+
   {
     role: 'Member',
     org: 'OWASP Student Chapter, TIET',
@@ -38,8 +38,23 @@ const experiences = [
     skills: ['Teamwork', 'Communication', 'Cybersecurity'],
   },
 
-  {
-    role: 'Event Organizer — Outreach Lead',
+  {  
+    role: 'Mentor & Briefing Lead',
+    org: 'OWASP x Google Prompt Wars Hackathon',
+    period: 'Aug 2026',
+    icon: Shield,
+    color: '#0071E3',
+    points: [
+      'Conducted the complete participant briefings for the hackathon.',
+      'Mentored students on GitHub, guiding them through uploading and managing their projects on repositories.',
+      'Assisted teams with deploying their projects on Vercel and Render.',
+      'Represented the Outreach & PR department in the afternoon session, presenting its role and key responsibilities.',
+      'Highlighted the department\'s achievements, including driving participant turnout beyond expectations and exceeding the venue capacity originally booked.',
+    ],
+    skills: ['Mentoring', 'GitHub', 'Deployment', 'Public Speaking'],
+  },
+
+   { role: 'Event Organizer — Outreach Lead',
     org: 'HackOWASP 8.0 — TIET\'s Flagship 36-Hour Hackathon',
     period: 'Apr 2026',
     icon: Code,
