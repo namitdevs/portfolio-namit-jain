@@ -8,7 +8,7 @@ const categories = [
     skills: [
       { name: 'C', level: 85 },
       { name: 'C++', level: 82 },
-      { name: 'SQL / MySQL', level: 72 },
+      
     ],
   },
   {
@@ -22,7 +22,7 @@ const categories = [
 ];
 
 const tags = [
-  'C', 'C++', 'SQL / MySQL', 'Problem Solving', 'Data Structures', 'Cybersecurity (Learning)',
+  'C', 'C++', 'Problem Solving', 'Data Structures', 'Cybersecurity (Learning)',
 ];
 
 const container: Variants = {

@@ -6,9 +6,9 @@ import { Trophy, Star, Target, GraduationCap, Users, Zap, Award, BookOpen } from
 const achievements = [
   {
     icon: Trophy,
-    title: 'CGPA 9.945',
+    title: 'CGPA 9.94',
     subtitle: 'Sem II: Perfect 10.00 SGPA',
-    desc: 'Achieved CGPA 9.945 in B.Tech CSE at TIET — Semester I SGPA 9.89, Semester II SGPA 10.00 (Perfect Score).',
+    desc: 'Achieved CGPA 9.94 in B.Tech CSE at TIET — Semester I SGPA 9.89, Semester II SGPA 10.00 (Perfect Score).',
     color: '#FFD700',
     bg: 'from-yellow-50 to-amber-50 dark:from-yellow-900/15 dark:to-amber-900/10',
   },
@@ -52,14 +52,7 @@ const achievements = [
     color: '#FFD700',
     bg: 'from-yellow-50 to-orange-50 dark:from-yellow-900/15 dark:to-orange-900/10',
   },
-  {
-    icon: Zap,
-    title: 'SRF Olympiad Medals',
-    subtitle: 'Multiple-Time Medal Recipient',
-    desc: 'Received medals multiple times at the SRF Olympiad, demonstrating consistent academic excellence at the competitive level.',
-    color: '#FF6B35',
-    bg: 'from-orange-50 to-red-50 dark:from-orange-900/15 dark:to-red-900/10',
-  },
+  
   {
     icon: Users,
     title: 'School Club Leader',

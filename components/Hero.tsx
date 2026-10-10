@@ -143,7 +143,7 @@ export default function Hero() {
               className="absolute -bottom-4 -right-4 glass dark:glass-dark rounded-2xl px-4 py-3 shadow-lg"
             >
               <p className="text-xs font-semibold text-[#1D1D1F] dark:text-white">CGPA</p>
-              <p className="text-2xl font-bold text-[#0071E3]">9.945</p>
+              <p className="text-2xl font-bold text-[#0071E3]">9.94</p>
               <p className="text-xs text-[#6E6E73] dark:text-white/50">Sem II: 10.00</p>
             </motion.div>
           </div>

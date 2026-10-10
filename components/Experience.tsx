@@ -27,7 +27,7 @@ const experiences = [
   },
   {
     role: 'Event Organizer — Outreach Lead',
-    org: 'Hackovers 8.0 — TIET\'s Flagship 36-Hour Hackathon',
+    org: 'HackOWASP 8.0 — TIET\'s Flagship 36-Hour Hackathon',
     period: '2024',
     icon: Code,
     color: '#5856D6',

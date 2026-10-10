@@ -17,7 +17,7 @@ const highlights = [
   {
     icon: GraduationCap,
     title: 'Education',
-    desc: 'B.Tech CSE at Thapar Institute of Engineering & Technology — CGPA 9.945',
+    desc: 'B.Tech CSE at Thapar Institute of Engineering & Technology — CGPA 9.94',
   },
   {
     icon: Shield,
@@ -27,7 +27,7 @@ const highlights = [
   {
     icon: Code2,
     title: 'Engineering',
-    desc: 'Proficient in C, C++, SQL with a passion for clean, efficient code',
+    desc: 'Proficient in C, C++ with a passion for clean, efficient code',
   },
   {
     icon: MapPin,
@@ -56,13 +56,13 @@ export default function About() {
               Building at the intersection of code &amp; security.
             </motion.h2>
             <motion.p variants={item} className="text-base text-[#6E6E73] dark:text-white/60 leading-relaxed mb-4">
-              I&apos;m Namit Jain, a B.Tech CSE student at Thapar Institute of Engineering &amp; Technology with a CGPA of 9.945 and a perfect 10.00 SGPA in Semester II. I&apos;m driven by curiosity — about how systems work, how they can be built better, and how they can be secured.
+              I&apos;m Namit Jain, a B.Tech CSE student at Thapar Institute of Engineering &amp; Technology with a CGPA of 9.94 and a perfect 10.00 SGPA in Semester II. I&apos;m driven by curiosity — about how systems work, how they can be built better, and how they can be secured.
             </motion.p>
             <motion.p variants={item} className="text-base text-[#6E6E73] dark:text-white/60 leading-relaxed mb-4">
-              Beyond academics, I serve as Executive Member (Marketing &amp; Outreach) at the OWASP Student Chapter, helped organize Hackovers 8.0 — TIET&apos;s flagship 36-hour hackathon — and won 1st Place Pan-India at the Orphicy Mini MBA for developing &quot;BotSpot,&quot; an online education brand pitched to investors Shark Tank-style.
+              Beyond academics, I serve as Executive Member (Marketing &amp; Outreach) at the OWASP Student Chapter, helped organize HackOWASP 8.0 — TIET&apos;s flagship 36-hour hackathon — and won 1st Place Pan-India at the Orphicy Mini MBA for developing &quot;BotSpot,&quot; an online education brand pitched to investors Shark Tank-style.
             </motion.p>
             <motion.p variants={item} className="text-base text-[#6E6E73] dark:text-white/60 leading-relaxed">
-              A Gold Medalist basketball team captain, multiple-time SRF Olympiad medallist, and former school club leader — I believe great engineering is equal parts technical precision and human understanding.
+              A Gold Medalist basketball team captain and former school club leader — I believe great engineering is equal parts technical precision and human understanding.
             </motion.p>
           </div>
 
