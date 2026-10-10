@@ -12,10 +12,10 @@ function Shield({ className, style }: { className?: string; style?: React.CSSPro
 }
 
 const experiences = [
-  {
-    role: 'Executive Member — Marketing & Outreach',
+    {
+    role: 'Core Member (Executive Team) - Marketing & Outreach',
     org: 'OWASP Student Chapter, TIET',
-    period: '2024 — Present',
+    period: 'Oct 2026 - Present',
     icon: Shield,
     color: '#0071E3',
     points: [
@@ -25,10 +25,23 @@ const experiences = [
     ],
     skills: ['Marketing', 'Outreach', 'Communication', 'Cybersecurity'],
   },
+  
+  {
+    role: 'Member',
+    org: 'OWASP Student Chapter, TIET',
+    period: 'Nov 2025 - Oct 2026',
+    icon: Shield,
+    color: '#0071E3',
+    points: [
+      'Contributed to chapter activities and events, including HackOWASP 8.0.',
+    ],
+    skills: ['Teamwork', 'Communication', 'Cybersecurity'],
+  },
+
   {
     role: 'Event Organizer — Outreach Lead',
     org: 'HackOWASP 8.0 — TIET\'s Flagship 36-Hour Hackathon',
-    period: '2024',
+    period: 'Apr 2026',
     icon: Code,
     color: '#5856D6',
     points: [
@@ -42,7 +55,7 @@ const experiences = [
   {
     role: 'School Club Leader',
     org: 'Narayana e-Techno School — Student Council',
-    period: '2021 — 2023',
+    period: '2020 — 2023',
     icon: Users,
     color: '#34C759',
     points: [
