@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { Github, Linkedin, Mail, FileText, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
@@ -14,7 +15,22 @@ const fadeUp: Variants = {
   }),
 };
 
+function useIsDark() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    const el = document.documentElement;
+    const update = () => setDark(el.classList.contains('dark'));
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(el, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
+  return dark;
+}
+
 export default function Hero() {
+  const isDark = useIsDark();
+
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-[#121212] px-6 pt-28 pb-24">
       {/* Background blobs */}
@@ -38,23 +54,38 @@ export default function Hero() {
             Open to opportunities
           </motion.div>
 
+          {/* Interactive name */}
           <motion.div
             custom={1}
             variants={fadeUp}
             initial="hidden"
             animate="show"
-            className="mb-5"
+            className="mb-4"
           >
             <h1 className="sr-only">Namit Jain</h1>
-            <TechText
-              text="Namit Jain"
-              fontWeight={700}
-              fontSize={150}
-              reveal="letter"
-              dashLength={4}
-              dashGap={2}
-              specks={15}
-            />
+            <div className="relative w-full h-[110px] md:h-[150px]">
+              <TechText
+                text="Namit Jain"
+                fontWeight={700}
+                fontSize={150}
+                reveal="letter"
+                dashLength={4}
+                dashGap={2}
+                specks={15}
+                color={isDark ? '#ffffff' : '#1D1D1F'}
+                accentColor="#0071E3"
+                letterSpacing={-0.05}
+                reach={200}
+                softness={0.7}
+                strokeWidth={1.5}
+                speed={1}
+                lineStyle="dashed"
+                selection
+                labels
+                draggable
+                sweep
+              />
+            </div>
           </motion.div>
 
           <motion.p
