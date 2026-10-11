@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { Github, Linkedin, Mail, FileText, ChevronDown } from 'lucide-react';
-import Image from 'next/image';
 import TechText from './TechText';
+import HoloCard from './HoloCard';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -156,30 +156,37 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Photo */}
+        {/* Photo as holo card */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
           className="order-1 md:order-2 flex justify-center"
         >
-          <div className="relative">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#0071E3]/20 to-sky-200/30 dark:from-[#0071E3]/10 dark:to-sky-800/20 blur-xl scale-110" />
-            <div className="relative w-64 h-80 md:w-80 md:h-96 rounded-3xl overflow-hidden shadow-2xl border border-white/50 dark:border-white/10">
-              <Image
-                src="/images/WhatsApp_Image_2026-07-20_at_17.15.24.jpeg"
-                alt="Namit Jain"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-            </div>
+          <div className="relative w-fit max-w-full">
+            <HoloCard
+              image="/images/WhatsApp_Image_2026-07-20_at_17.15.24.jpeg"
+              alt="Namit Jain"
+              preset="rainbow"
+              foilColor="#e2e6ec"
+              intensity={0.7}
+              scale={1}
+              edgeSparkle={0.8}
+              frame={4}
+              glare={0.5}
+              tiltMax={14}
+              hoverScale={1.04}
+              radius={24}
+              width={320}
+              idle
+              shadow
+            />
             {/* Floating badge */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.5 }}
-              className="absolute -bottom-4 -right-4 glass dark:glass-dark rounded-2xl px-4 py-3 shadow-lg"
+              className="absolute -bottom-4 -right-4 z-10 glass dark:glass-dark rounded-2xl px-4 py-3 shadow-lg pointer-events-none"
             >
               <p className="text-xs font-semibold text-[#1D1D1F] dark:text-white">CGPA</p>
               <p className="text-2xl font-bold text-[#0071E3]">9.94</p>
