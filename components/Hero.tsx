@@ -16,7 +16,7 @@ const fadeUp: Variants = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-[#121212] px-6">
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-[#121212] px-6 pt-28 pb-24">
       {/* Background blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="animate-blob animation-delay-0 absolute -top-40 -left-40 w-96 h-96 bg-blue-100/60 dark:bg-blue-900/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70" />
@@ -24,20 +24,7 @@ export default function Hero() {
         <div className="animate-blob animation-delay-4000 absolute -bottom-40 left-1/3 w-72 h-72 bg-blue-50/80 dark:bg-blue-800/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
-        {/* TechText banner */}
-        <div className="md:col-span-2 order-0 relative w-full h-[200px] md:h-[300px]">
-          <TechText
-            text="Namit Jain"
-            fontWeight={600}
-            fontSize={150}
-            reveal="letter"
-            dashLength={4}
-            dashGap={2}
-            specks={15}
-          />
-        </div>
-
+      <div className="relative z-10 max-w-5xl mx-auto w-full grid md:grid-cols-[1.3fr_1fr] gap-12 items-center">
         {/* Text content */}
         <div className="text-left order-2 md:order-1">
           <motion.div
@@ -51,7 +38,27 @@ export default function Hero() {
             Open to opportunities
           </motion.div>
 
-          <h1 className="sr-only">Namit Jain</h1>
+          {/* Animated name */}
+          <motion.div
+            custom={1}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mb-5"
+          >
+            <h1 className="sr-only">Namit Jain</h1>
+            <div className="relative w-full aspect-[5.3/1]">
+              <TechText
+                text="Namit Jain"
+                fontWeight={700}
+                fontSize={150}
+                reveal="letter"
+                dashLength={4}
+                dashGap={2}
+                specks={15}
+              />
+            </div>
+          </motion.div>
 
           <motion.p
             custom={2}
