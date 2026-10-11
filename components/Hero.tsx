@@ -3,6 +3,7 @@
 import { motion, type Variants } from 'framer-motion';
 import { Github, Linkedin, Mail, FileText, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
+import TechText from './TechText';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -24,6 +25,19 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto w-full grid md:grid-cols-2 gap-16 items-center">
+        {/* TechText banner */}
+        <div className="md:col-span-2 order-0 relative w-full h-[200px] md:h-[300px]">
+          <TechText
+            text="Namit Jain"
+            fontWeight={600}
+            fontSize={150}
+            reveal="letter"
+            dashLength={4}
+            dashGap={2}
+            specks={15}
+          />
+        </div>
+
         {/* Text content */}
         <div className="text-left order-2 md:order-1">
           <motion.div
@@ -37,17 +51,7 @@ export default function Hero() {
             Open to opportunities
           </motion.div>
 
-          <motion.h1
-            custom={1}
-            variants={fadeUp}
-            initial="hidden"
-            animate="show"
-            className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#1D1D1F] dark:text-white leading-[1.05] mb-4"
-          >
-            Namit
-            <br />
-            <span className="text-[#0071E3]">Jain</span>
-          </motion.h1>
+          <h1 className="sr-only">Namit Jain</h1>
 
           <motion.p
             custom={2}
@@ -121,7 +125,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+          transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
           className="order-1 md:order-2 flex justify-center"
         >
           <div className="relative">
