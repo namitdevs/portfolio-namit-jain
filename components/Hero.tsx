@@ -38,7 +38,6 @@ export default function Hero() {
             Open to opportunities
           </motion.div>
 
-          {/* Animated name */}
           <motion.div
             custom={1}
             variants={fadeUp}
@@ -47,17 +46,15 @@ export default function Hero() {
             className="mb-5"
           >
             <h1 className="sr-only">Namit Jain</h1>
-            <div className="relative w-full aspect-[5.3/1]">
-              <TechText
-                text="Namit Jain"
-                fontWeight={700}
-                fontSize={150}
-                reveal="letter"
-                dashLength={4}
-                dashGap={2}
-                specks={15}
-              />
-            </div>
+            <TechText
+              text="Namit Jain"
+              fontWeight={700}
+              fontSize={150}
+              reveal="letter"
+              dashLength={4}
+              dashGap={2}
+              specks={15}
+            />
           </motion.div>
 
           <motion.p
@@ -67,7 +64,7 @@ export default function Hero() {
             animate="show"
             className="text-base md:text-lg font-medium text-[#1D1D1F] dark:text-white/80 mb-2"
           >
-            B.Tech CSE @ Thapar Institute of Engineering & Technology
+            B.Tech CSE @ Thapar Institute of Engineering &amp; Technology
           </motion.p>
 
           <motion.p
