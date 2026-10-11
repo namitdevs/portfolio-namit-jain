@@ -11,7 +11,6 @@ type TechTextProps = {
   className?: string;
 };
 
-// Deterministic pseudo-random so server and client render the same specks
 function seeded(seed: number) {
   const x = Math.sin(seed * 9999) * 10000;
   return x - Math.floor(x);
@@ -27,13 +26,14 @@ export default function TechText({
   specks = 15,
   className = '',
 }: TechTextProps) {
-  const width = Math.max(text.length * fontSize * 0.62, fontSize);
-  const height = fontSize * 1.4;
+  const pad = 6;
+  const width = text.length * fontSize * 0.58 + pad * 2;
+  const height = fontSize * 1.1;
 
   const dots = Array.from({ length: specks }, (_, i) => ({
     cx: seeded(i + 1) * width,
     cy: seeded(i + 101) * height,
-    r: 1 + seeded(i + 201) * 2,
+    r: 1 + seeded(i + 201) * 1.5,
     delay: seeded(i + 301) * 3,
   }));
 
@@ -41,7 +41,7 @@ export default function TechText({
     <div className={`absolute inset-0 ${className}`}>
       <svg
         viewBox={`0 0 ${width} ${height}`}
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMinYMid meet"
         className="w-full h-full text-[#1D1D1F] dark:text-white"
         role="img"
         aria-label={text}
@@ -55,51 +55,12 @@ export default function TechText({
 
         <text
           className="tt-text"
-          x={width / 2}
-          y={fontSize}
-          textAnchor="middle"
+          x={pad}
+          y={fontSize * 0.88}
+          textAnchor="start"
           fontSize={fontSize}
           fontWeight={fontWeight}
           fill="currentColor"
           fillOpacity={0.06}
           stroke="currentColor"
           strokeWidth={1.5}
-          strokeDasharray={`${dashLength} ${dashGap}`}
-          style={{ whiteSpace: 'pre' }}
-        >
-          {text.split('').map((char, i) => (
-            <tspan
-              key={i}
-              style={
-                reveal === 'letter'
-                  ? {
-                      opacity: 0,
-                      animation: `tt-reveal 0.5s ease forwards`,
-                      animationDelay: `${i * 0.12}s`,
-                    }
-                  : undefined
-              }
-            >
-              {char}
-            </tspan>
-          ))}
-        </text>
-
-        {dots.map((d, i) => (
-          <circle
-            key={i}
-            cx={d.cx}
-            cy={d.cy}
-            r={d.r}
-            fill="#0071E3"
-            style={{
-              opacity: 0.1,
-              animation: 'tt-twinkle 3s ease-in-out infinite',
-              animationDelay: `${d.delay}s`,
-            }}
-          />
-        ))}
-      </svg>
-    </div>
-  );
-}
