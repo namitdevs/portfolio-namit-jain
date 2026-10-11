@@ -1,4 +1,4 @@
-import Gallery from '@/components/Gallery';
+// import Gallery from '@/components/Gallery';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -21,7 +21,7 @@ export default function Home() {
         <Projects />
         <Experience />
         <Achievements />
-        <Gallery />
+        {/* <Gallery /> */}
         <Resume />
         <Contact />
       </main>
