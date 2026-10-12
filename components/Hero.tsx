@@ -5,6 +5,7 @@ import { motion, type Variants } from 'framer-motion';
 import { Github, Linkedin, Mail, FileText, ChevronDown } from 'lucide-react';
 import TechText from './TechText';
 import HoloCard from './HoloCard';
+import ContourLines from './ContourLines';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -39,6 +40,9 @@ export default function Hero() {
         <div className="animate-blob animation-delay-2000 absolute top-1/3 -right-40 w-80 h-80 bg-sky-100/60 dark:bg-sky-900/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70" />
         <div className="animate-blob animation-delay-4000 absolute -bottom-40 left-1/3 w-72 h-72 bg-blue-50/80 dark:bg-blue-800/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70" />
       </div>
+
+      {/* Moving contour lines */}
+      <ContourLines color={isDark ? '#ffffff' : '#1D1D1F'} opacity={isDark ? 0.14 : 0.16} />
 
       <div className="relative z-10 max-w-5xl mx-auto w-full grid md:grid-cols-[1.3fr_1fr] gap-12 items-center">
         {/* Text content */}
