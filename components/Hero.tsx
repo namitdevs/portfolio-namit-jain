@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { motion, type Variants } from 'framer-motion';
 import { Github, Linkedin, Mail, FileText, ChevronDown } from 'lucide-react';
 import TechText from './TechText';
-import HoloCard from './HoloCard';
 import ContourLines from './ContourLines';
+
+const Lanyard = dynamic(() => import('./Lanyard'), { ssr: false });
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -160,37 +162,40 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Photo as holo card */}
+        {/* Lanyard card with photo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
-          className="order-1 md:order-2 flex justify-center"
+          className="order-1 md:order-2"
         >
-          <div className="relative w-fit max-w-full">
-            <HoloCard
-              image="/images/WhatsApp_Image_2026-07-20_at_17.15.24.jpeg"
-              alt="Namit Jain"
-              preset="rainbow"
-              foilColor="#e2e6ec"
-              intensity={0.7}
-              scale={1}
-              edgeSparkle={0.8}
-              frame={4}
-              glare={0.5}
-              tiltMax={14}
-              hoverScale={1.04}
-              radius={24}
-              width={320}
-              idle
-              shadow
+          <div className="relative w-full h-[520px] md:h-[640px]">
+            <Lanyard
+              frontImage="/images/WhatsApp_Image_2026-07-20_at_17.15.24.jpeg"
+              imageFit="cover"
+              cardColor="#ffffff"
+              orientation="portrait"
+              finish="glossy"
+              cornerRadius={0.3}
+              size={0.6}
+              anchor="center"
+              strapLength={0.5}
+              strapColor="#0071E3"
+              strapWidth={0.65}
+              metal="silver"
+              gravity={1}
+              damping={0.5}
+              elasticity={0.5}
+              breeze={0.5}
+              interactive
+              intro
             />
             {/* Floating badge */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.8, duration: 0.5 }}
-              className="absolute -bottom-4 -right-4 z-10 glass dark:glass-dark rounded-2xl px-4 py-3 shadow-lg pointer-events-none"
+              className="absolute bottom-6 right-2 z-10 glass dark:glass-dark rounded-2xl px-4 py-3 shadow-lg pointer-events-none"
             >
               <p className="text-xs font-semibold text-[#1D1D1F] dark:text-white">CGPA</p>
               <p className="text-2xl font-bold text-[#0071E3]">9.94</p>
