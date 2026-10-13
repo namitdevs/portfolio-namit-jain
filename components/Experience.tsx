@@ -1,7 +1,9 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Users, Code } from 'lucide-react';
+import OrbitImages from './OrbitImages';
 
 function Shield({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
@@ -12,8 +14,9 @@ function Shield({ className, style }: { className?: string; style?: React.CSSPro
 }
 
 const experiences = [
-    {
+  {
     role: 'Core Member (Executive Team) - Marketing & Outreach',
+    short: 'OWASP Core',
     org: 'OWASP Student Chapter, TIET',
     period: 'Oct 2026 - Present',
     icon: Shield,
@@ -25,9 +28,9 @@ const experiences = [
     ],
     skills: ['Marketing', 'Outreach', 'Communication', 'Cybersecurity'],
   },
-
   {
     role: 'Member',
+    short: 'OWASP Member',
     org: 'OWASP Student Chapter, TIET',
     period: 'Nov 2025 - Oct 2026',
     icon: Shield,
@@ -37,9 +40,9 @@ const experiences = [
     ],
     skills: ['Teamwork', 'Communication', 'Cybersecurity'],
   },
-
-  {  
+  {
     role: 'Mentor & Briefing Lead',
+    short: 'Prompt Wars',
     org: 'OWASP x Google Prompt Wars Hackathon',
     period: 'Aug 2026',
     icon: Shield,
@@ -53,8 +56,9 @@ const experiences = [
     ],
     skills: ['Mentoring', 'GitHub', 'Deployment', 'Public Speaking'],
   },
-
-   { role: 'Event Organizer — Outreach Lead',
+  {
+    role: 'Event Organizer — Outreach Lead',
+    short: 'HackOWASP 8.0',
     org: 'HackOWASP 8.0 — TIET\'s Flagship 36-Hour Hackathon',
     period: 'Apr 2026',
     icon: Code,
@@ -69,6 +73,7 @@ const experiences = [
   },
   {
     role: 'School Club Leader',
+    short: 'Student Council',
     org: 'Narayana e-Techno School — Student Council',
     period: '2020 — 2023',
     icon: Users,
@@ -82,12 +87,91 @@ const experiences = [
   },
 ];
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
+type Exp = (typeof experiences)[number];
+
+function DetailCard({ exp }: { exp: Exp }) {
+  const Icon = exp.icon;
+  const isCurrent = exp.period.includes('Present');
+  return (
+    <div className="bg-[#F5F5F7] dark:bg-[#1C1C1E] rounded-2xl p-6 md:p-8 text-left">
+      <div className="flex items-start gap-4 mb-4">
+        <div
+          className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
+          style={{ backgroundColor: `${exp.color}20` }}
+        >
+          <Icon className="w-5 h-5" style={{ color: exp.color }} />
+        </div>
+        <div>
+          <div className="flex flex-wrap items-center gap-2">
+            <h3 className="text-base md:text-lg font-bold text-[#1D1D1F] dark:text-white">{exp.role}</h3>
+            {isCurrent && (
+              <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-green-500/10 text-green-600 dark:text-green-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                Present
+              </span>
+            )}
+          </div>
+          <p className="text-sm text-[#6E6E73] dark:text-white/60">{exp.org}</p>
+          <span className="text-xs text-[#0071E3] font-medium">{exp.period}</span>
+        </div>
+      </div>
+      <ul className="space-y-2 mb-5">
+        {exp.points.map((pt, i) => (
+          <li key={i} className="text-sm text-[#6E6E73] dark:text-white/65 leading-relaxed flex gap-2">
+            <span className="text-[#0071E3] mt-1 flex-shrink-0">•</span>
+            {pt}
+          </li>
+        ))}
+      </ul>
+      <div className="flex flex-wrap gap-1.5">
+        {exp.skills.map((s) => (
+          <span
+            key={s}
+            className="text-xs px-2.5 py-1 rounded-full bg-white dark:bg-[#2C2C2E] text-[#6E6E73] dark:text-white/60"
+          >
+            {s}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Experience() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const orbitItems = experiences.map((exp, i) => {
+    const Icon = exp.icon;
+    const isActive = i === active;
+    return (
+      <div key={exp.short} className="relative w-full">
+        <button
+          type="button"
+          onClick={() => setActive(i)}
+          aria-label={`${exp.role} — ${exp.org}`}
+          aria-pressed={isActive}
+          className={`flex w-full aspect-square items-center justify-center rounded-full border-[4px] bg-[#F5F5F7] dark:bg-[#1C1C1E] transition-all duration-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#0071E3] ${
+            isActive ? 'scale-110' : 'opacity-80 hover:opacity-100 hover:scale-105'
+          }`}
+          style={{
+            borderColor: exp.color,
+            boxShadow: isActive ? `0 0 0 10px ${exp.color}22, 0 0 40px ${exp.color}88` : 'none',
+          }}
+        >
+          <Icon className="w-[46px] h-[46px]" style={{ color: exp.color }} />
+        </button>
+        <span
+          className={`pointer-events-none absolute left-1/2 top-full mt-4 -translate-x-1/2 whitespace-nowrap text-[24px] font-semibold transition-colors duration-300 ${
+            isActive ? 'text-[#1D1D1F] dark:text-white' : 'text-[#6E6E73] dark:text-white/60'
+          }`}
+        >
+          {exp.short}
+        </span>
+      </div>
+    );
+  });
+
   return (
     <section id="experience" className="section-padding bg-white dark:bg-[#121212]">
       <div className="container-max">
@@ -96,7 +180,7 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <p className="text-xs font-semibold tracking-widest uppercase text-[#0071E3] mb-3">Journey</p>
           <h2 className="text-4xl md:text-5xl font-bold text-[#1D1D1F] dark:text-white tracking-tight">
@@ -107,64 +191,72 @@ export default function Experience() {
           </p>
         </motion.div>
 
-        <div className="relative">
-          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#0071E3]/40 via-[#0071E3]/20 to-transparent hidden md:block" />
-
-          <div className="space-y-10">
-            {experiences.map((exp, idx) => {
-              const Icon = exp.icon;
-              const isLeft = idx % 2 === 0;
-              return (
-                <motion.div
-                  key={exp.org}
-                  variants={fadeUp}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true, margin: '-40px' }}
-                  className={`relative flex flex-col md:flex-row ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-start md:items-center`}
-                >
-                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-[#0071E3] bg-white dark:bg-[#121212] hidden md:block" style={{ top: '50%', transform: 'translate(-50%, -50%)' }} />
-
-                  <div className={`hidden md:block md:w-1/2 ${isLeft ? 'text-right pr-12' : 'text-left pl-12'}`}>
-                    <span className="text-xs font-semibold text-[#6E6E73] dark:text-white/40 tracking-wide">{exp.period}</span>
-                  </div>
-
-                  <div className="md:w-1/2 pl-0 md:pl-12 md:pr-0 w-full">
-                    <div className="bg-[#F5F5F7] dark:bg-[#1C1C1E] rounded-2xl p-6 card-hover">
-                      <div className="flex items-start gap-4 mb-4">
-                        <div
-                          className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                          style={{ backgroundColor: `${exp.color}15` }}
-                        >
-                          <Icon className="w-5 h-5" style={{ color: exp.color }} />
-                        </div>
-                        <div>
-                          <h3 className="text-base font-bold text-[#1D1D1F] dark:text-white">{exp.role}</h3>
-                          <p className="text-sm text-[#6E6E73] dark:text-white/50">{exp.org}</p>
-                          <span className="md:hidden text-xs text-[#0071E3] font-medium">{exp.period}</span>
-                        </div>
-                      </div>
-                      <ul className="space-y-2 mb-4">
-                        {exp.points.map((pt, i) => (
-                          <li key={i} className="text-sm text-[#6E6E73] dark:text-white/55 leading-relaxed flex gap-2">
-                            <span className="text-[#0071E3] mt-1 flex-shrink-0">•</span>
-                            {pt}
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="flex flex-wrap gap-1.5">
-                        {exp.skills.map((s) => (
-                          <span key={s} className="text-xs px-2.5 py-1 rounded-full bg-white dark:bg-[#2C2C2E] text-[#6E6E73] dark:text-white/50">
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+        {/* Desktop / tablet: orbit + detail card */}
+        <div className="hidden md:block">
+          <div
+            className="max-w-5xl mx-auto"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocus={() => setPaused(true)}
+            onBlur={() => setPaused(false)}
+          >
+            <OrbitImages
+              items={orbitItems}
+              shape="ellipse"
+              baseWidth={1400}
+              radiusX={620}
+              radiusY={170}
+              rotation={-6}
+              duration={45}
+              itemSize={110}
+              responsive
+              aspectRatio="2.4 / 1"
+              direction="normal"
+              fill
+              showPath
+              pathColor="rgba(0,113,227,0.35)"
+              pathWidth={2}
+              paused={paused}
+              centerContent={
+                <div className="text-center">
+                  <p className="text-xs font-semibold tracking-widest uppercase text-[#0071E3] mb-1">Journey</p>
+                  <p className="text-2xl lg:text-3xl font-bold text-[#1D1D1F] dark:text-white">
+                    {experiences.length} roles
+                  </p>
+                  <p className="text-xs text-[#6E6E73] dark:text-white/50 mt-1">Hover to pause · click a role</p>
+                </div>
+              }
+            />
           </div>
+
+          <div className="max-w-2xl mx-auto mt-10">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.35 }}
+              >
+                <DetailCard exp={experiences[active]} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Mobile: stacked cards */}
+        <div className="md:hidden space-y-5">
+          {experiences.map((exp) => (
+            <motion.div
+              key={exp.short}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5 }}
+            >
+              <DetailCard exp={exp} />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
