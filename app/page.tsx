@@ -22,6 +22,7 @@ export default function Home() {
         <Projects />
         <Experience />
         <Achievements />
+        <Story />
         {/* <Gallery /> */}
         <Resume />
         <Contact />
