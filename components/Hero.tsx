@@ -5,9 +5,9 @@ import dynamic from 'next/dynamic';
 import { motion, type Variants } from 'framer-motion';
 import { Github, Linkedin, Mail, FileText, ChevronDown } from 'lucide-react';
 import TechText from './TechText';
-import ContourLines from './ContourLines';
 
 const Lanyard = dynamic(() => import('./Lanyard'), { ssr: false });
+const GradientASCII = dynamic(() => import('./GradientASCII'), { ssr: false });
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -31,20 +31,55 @@ function useIsDark() {
   return dark;
 }
 
+function useIsMobile() {
+  const [mobile, setMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const update = () => setMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  return mobile;
+}
+
 export default function Hero() {
   const isDark = useIsDark();
+  const isMobile = useIsMobile();
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white dark:bg-[#121212] px-6 pt-28 pb-24">
-      {/* Background blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="animate-blob animation-delay-0 absolute -top-40 -left-40 w-96 h-96 bg-blue-100/60 dark:bg-blue-900/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70" />
-        <div className="animate-blob animation-delay-2000 absolute top-1/3 -right-40 w-80 h-80 bg-sky-100/60 dark:bg-sky-900/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70" />
-        <div className="animate-blob animation-delay-4000 absolute -bottom-40 left-1/3 w-72 h-72 bg-blue-50/80 dark:bg-blue-800/20 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-3xl opacity-70" />
+      {/* ASCII gradient background */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+        }}
+        aria-hidden="true"
+      >
+        <GradientASCII
+          colors={
+            isDark
+              ? ['#0b1020', '#1e3fd8', '#38bdf8', '#a5d8ff']
+              : ['#1e3fd8', '#0071E3', '#38bdf8']
+          }
+          lightMode={!isDark}
+          shape="horizon"
+          cellSize={isMobile ? 26 : 18}
+          dpr={isMobile ? 1 : 1.5}
+          density={0.8}
+          glyphOpacity={0.5}
+          gradientOpacity={0.5}
+          glow={0.15}
+          grain={0.05}
+          flicker={0.15}
+          speed={0.8}
+          mouseInteraction
+          clickEffect="none"
+          intro
+        />
       </div>
-
-      {/* Moving contour lines */}
-      <ContourLines color={isDark ? '#ffffff' : '#1D1D1F'} opacity={isDark ? 0.14 : 0.16} />
 
       <div className="relative z-10 max-w-5xl mx-auto w-full grid md:grid-cols-[1.3fr_1fr] gap-12 items-center">
         {/* Text content */}
